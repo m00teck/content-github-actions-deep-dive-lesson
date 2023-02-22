@@ -64,3 +64,18 @@ jobs:
             --s3-bucket my-first-bucket-z1v0zlo4l04zut7jrbz6hreqftx4bfju \
             --s3-key ${{ github.sha }}.zip \
             --publish
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release from ${{ github.run_number }}
+          body: New release for ${{ github.sha }}. Release notes on the documentation site
+          draft: false
+          prerelease: false
+          
