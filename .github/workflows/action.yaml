@@ -1,0 +1,6 @@
+name: My Lambda Function
+
+on:
+  push:
+    branches:
+      - main
